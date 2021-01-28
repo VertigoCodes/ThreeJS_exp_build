@@ -30,18 +30,23 @@ var cube = new THREE.Mesh(geometry, material);
 //scene.add( cube )
 
 //ADD CUSTOM MODEL
-const loader = new GLTFLoader();
+var LoadPage1 = function() {
+    const loader = new GLTFLoader();
 
-loader.load(
-    'SCENES/PG_1.gltf',
-    function(gltf) {
-        scene.add(gltf.scene);
-    },
-    undefined,
-    function(error) {
-        console.error(error);
-    }
-);
+    loader.load(
+        'SCENES/PG_1.gltf',
+        function(gltf) {
+            pg_1 = gltf.scene.children[0];
+            pg_1.scale.set(0.8, 0.8, 0.8);
+            scene.add(gltf.scene);
+        },
+        undefined,
+        function(error) {
+            console.error(error);
+        }
+    );
+}
+
 
 //LIGHTING
 var pointLight = new THREE.PointLight(0xFFFFFF, 1);
@@ -74,5 +79,5 @@ var GameLoop = function() {
     render();
 }
 
-
+LoadPage1();
 GameLoop();
